@@ -1,5 +1,7 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:import]
+
 
   # GET /patients
   # GET /patients.json
