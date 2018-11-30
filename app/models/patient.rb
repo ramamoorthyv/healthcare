@@ -1,4 +1,5 @@
 class Patient < ApplicationRecord
+   
     def self.import(file)
         spreadsheet = Roo::Spreadsheet.open(file.path)
         header = spreadsheet.row(1)
@@ -6,7 +7,7 @@ class Patient < ApplicationRecord
           row = Hash[[header, spreadsheet.row(i)].transpose]
           patient = find_by(id: row["id"]) || new
           patient.name = row['name']
-          patient.dob = row['dob']
+          patient.dob = row['date']
           patient.number = row['number']
           patient.description = row['description']
           patient.save!
